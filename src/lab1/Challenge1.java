@@ -17,19 +17,41 @@ import javax.swing.JOptionPane;
  */
 public class Challenge1 {
     private static final int LAST_NAME_IDX = 1;
-
     public static void main(String[] args) {
         Challenge1 app = new Challenge1();
+        String fullName;   
+        fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
+        String lastName = "";
         
-        String fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
-        String lastName = app.extractLastName(fullName);
+        while(lastName.isEmpty())
+        try {
+            
+        lastName = app.extractLastName(fullName);
+        
+        } catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(null, "You must enter a name in the correct format. Please try again.");
+            fullName = JOptionPane.showInputDialog("Enter full name (use Format: first name, last name):");
+        }
+        
+        
         String msg = "Your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
     }
+    // could have thrown a null pointer instead of testing for null, however this also checks for empty string.
+    
+    
     
     public String extractLastName(String fullName) {
-        // if throws logic here. 
+        if (fullName.isEmpty() || fullName == null){
+            throw new IllegalArgumentException("Your Full name cannot be empty.");
+        }         
         String[] nameParts = fullName.split(" ");
+        if (nameParts.length > 2 || nameParts.length < 2){
+            throw new IllegalArgumentException("Incorrect Format");
+        } 
+        // would test for numbers however Jim brought up that one girl with the name 7.
+        // also Prince had a symbol for a few years. I wonder if he hot-keyed that for emails and whatnot.
+        
         return nameParts[nameParts.length - 1];
     }
 

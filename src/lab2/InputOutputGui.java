@@ -19,8 +19,18 @@ public class InputOutputGui {
         
         String fullName = JOptionPane.showInputDialog("Enter full name:");
         String lastName = "";
+       
+        
+        while (lastName.isEmpty()){
+        try{
         lastName = nameService.extractLastName(fullName);
-  
+        } 
+        catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(null, "You must enter a name in the correct format. Please try again.");
+            fullName = JOptionPane.showInputDialog("Enter full name (use Format: first name, last name):");
+        }
+        
+        }
         String msg = "Your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
         
