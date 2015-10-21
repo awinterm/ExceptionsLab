@@ -17,9 +17,16 @@ public class NameService {
      * 
      * @param fullName - a name containing a first name and a last name
      * @return the last name
+     * @throws lab3.NameValueIncorrectException
      */
-    public String extractLastName(String fullName) {
+    public String extractLastName(String fullName) throws NameValueIncorrectException {
+        if (fullName == null || "".equals(fullName)){
+            throw new NameValueIncorrectException();
+        }
         String[] nameParts = fullName.split(" ");
+        if (nameParts.length < 2){
+            throw new NameValueIncorrectException();
+        }
         return nameParts[LAST_NAME_IDX];
     }
     
@@ -29,8 +36,12 @@ public class NameService {
      * 
      * @param fullName - a name containing a first name and a last name
      * @return the first name
+     * @throws lab3.NameValueIncorrectException
      */
-    public String extractFirstName(String fullName) {
+    public String extractFirstName(String fullName) throws NameValueIncorrectException {
+         if (fullName == null || "".equals(fullName)){
+            throw new NameValueIncorrectException();
+        }
         String[] nameParts = fullName.split(" ");
         return nameParts[FIRST_NAME_IDX];
     }
@@ -40,8 +51,12 @@ public class NameService {
      * 
      * @param name - any full name or part of a name.
      * @return the length of the name or part.
+     * @throws lab3.NameValueIncorrectException
      */
-    public int getNameLength(String name) {
+    public int getNameLength(String name) throws NameValueIncorrectException {
+        if (name == null || "".equals(name)){
+            throw new NameValueIncorrectException();
+        }
         return name.length();
     }
     
