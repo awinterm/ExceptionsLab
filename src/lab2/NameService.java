@@ -25,7 +25,7 @@ public class NameService {
      * @param fullName - a name containing a first name and a last name
      * @return the last name
      */
-    public String extractLastName(String fullName) {
+    public String extractLastName(String fullName) throws IllegalArgumentException {
         if (fullName.isEmpty() || fullName == null){
             throw new IllegalArgumentException();
         }         
@@ -44,7 +44,7 @@ public class NameService {
      * @param fullName - a name containing a first name and a last name
      * @return the first name
      */
-    public String extractFirstName(String fullName) {
+    public String extractFirstName(String fullName) throws IllegalArgumentException {
          if (fullName.isEmpty() || fullName == null){
             throw new IllegalArgumentException();
         }         
@@ -61,7 +61,7 @@ public class NameService {
      * @param name - any full name or part of a name.
      * @return the length of the name or part.
      */
-    public int getNameLength(String name) {
+    public int getNameLength(String name) throws IllegalArgumentException{
         if (name.isEmpty() || name == null){
             throw new IllegalArgumentException();
         }         
